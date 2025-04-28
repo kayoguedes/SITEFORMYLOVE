@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Para Meu Amor 💖</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ffafbd, #ffc3a0);
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 3em;
+            animation: bounce 1s infinite alternate;
+        }
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        #btn {
+            margin-top: 30px;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            background-color: #fff;
+            color: #ff69b4;
+            cursor: pointer;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        #btn:hover {
+            transform: scale(1.1);
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(45deg);
+            animation: fall 5s linear infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+        @keyframes fall {
+            0% { top: -10%; left: calc(100% * var(--i)); opacity: 1; }
+            100% { top: 110%; left: calc(100% * var(--j)); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Te Amo, Linda! 😘</h1>
+    <button id="btn">Clique Aqui!</button>
+    
+    <!-- Áudio -->
+    <audio id="sound">
+        <source src="cute-pop.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio HTML5.
+    </audio>
+
+    <script>
+        // Corações caindo
+        for (let i = 0; i < 30; i++) {
+            let heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.setProperty('--i', Math.random());
+            heart.style.setProperty('--j', Math.random());
+            document.body.appendChild(heart);
+        }
+
+        // Botão com som e mensagens
+        const button = document.getElementById('btn');
+        const sound = document.getElementById('sound');
+        button.addEventListener('click', () => {
+            const messages = [
+                "Você é a mais linda! 💕",
+                "Casa comigo? 💍",
+                "Hoje é dia de pizza! 🍕",
+                "Te amo até a lua! 🚀",
+                "Você me faz sorrir 😄"
+            ];
+            const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+            button.innerText = randomMsg;
+            button.style.backgroundColor = '#ff69b4';
+            button.style.color = '#fff';
+            
+            // Tocar som
+            sound.currentTime = 0;
+            sound.play();
+        });
+    </script>
+
+</body>
+</html>
